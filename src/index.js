@@ -1,33 +1,30 @@
 import './index.css';
-import displayList from './modules/displaylist.js';
-import LeaderBoard from './modules/board.js';
+import displayList, { getValue } from './modules/displaylist.js';
+import postValue from './modules/post.js';
 
-const leaderArr = [
-  { user: 'Amre', score: 465 },
-  { user: 'Nurka', score: 360 },
-];
-
-const scoreInput = document.querySelector('#score');
-const nameInput = document.querySelector('#name');
+const apiKey = 'Gw2HUhz2DAmZdE3JLvOK';
+const gameAPI = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores/`;
 const refreshBtn = document.querySelector('.refresh');
-const submitBtn = document.querySelector('.submit');
-const leaderForm = document.querySelector('.second-part');
+const form = document.getElementById('form');
+
+form.addEventListener('submit', (e) => {
+  const user = document.getElementById('name');
+  const score = document.getElementById('score');
+  const formData = {
+    user: user.value,
+    score: score.value,
+  };
+  e.preventDefault();
+  postValue(formData, gameAPI);
+  user.value = '';
+  score.value = '';
+});
 
 refreshBtn.addEventListener('click', () => {
   displayList();
 });
 
-submitBtn.addEventListener('submit', (e) => {
-  e.preventDefault();
-  nameInput.value = '';
-  scoreInput.value = '';
-});
+displayList();
+getValue();
 
-leaderForm.addEventListener('submit', () => {
-  const leader = new LeaderBoard(nameInput.value, scoreInput.value);
-  nameInput.value = '';
-  scoreInput.value = '';
-  leaderArr.push(leader);
-  displayList(leaderArr);
-});
-displayList(leaderArr);
+export default gameAPI;

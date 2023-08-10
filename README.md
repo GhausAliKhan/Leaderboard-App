@@ -62,7 +62,7 @@ The leaderboard website displays scores submitted by different players. It also 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Coming Soon](#)
+- [Live Demo Link](https://ghausalikhan.github.io/Leaderboard-App/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
